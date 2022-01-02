@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 **목차**
 
 - [1. 요약](#1-요약)
@@ -21,6 +22,17 @@
 	- [8.2. API 호출 테스트](#82-api-호출-테스트)
 
 
+=======
+# gin 으로 간단한 todo list 만들기
+
+Created time: 2021년 12월 31일 오후 11:43
+Last edited time: 2022년 1월 2일 오후 4:29
+Status: Completed
+Tech: Gin, Golang
+Type: 공부
+
+**목차**
+>>>>>>> d729cf68db8611e44c0f6ff4e682ce9da50ae7f0
 
 **참고**
 
@@ -28,6 +40,7 @@
 
 ---
 
+<<<<<<< HEAD
 # 1. 요약
 
 - gin 을 사용해 간단한 RESTful API 를 구현함.
@@ -41,6 +54,21 @@
 golang 의 웹 프레임워크 gin 을 이용해 TODO List 애플리케이션에 대한 RESTful API 구현을 해보자.
 
 # 3. API 목록
+=======
+# 요약
+
+- gin 을 사용해 간단한 RESTful API 를 구현함.
+- 프로젝트 구조는 database 연결, 모델/스키마와 쿼리, 핸들러, 라우터, 메인함수로 정의함.
+- 데이터베이스는 mysql 을 사용함. 디비 연결정보와 테이블 스키마는 구조체로 정의하고 GORM 을 사용해 디비에 연결하여 쿼리를 작성함.
+- 핸들러에서 경로 파라미터, 앞서 작성한 쿼리들과 바인딩, Abort 로 예외처리를 사용함.
+- gin 의 Group() 메서드를 활용해 URL 를 묶어서 관리함.
+
+# 목표
+
+golang 의 웹 프레임워크 gin 을 이용해 TODO List 애플리케이션에 대한 RESTful API 구현을 해보자.
+
+# API 목록
+>>>>>>> d729cf68db8611e44c0f6ff4e682ce9da50ae7f0
 
 ```bash
 GET: /v1/todo 
@@ -50,7 +78,11 @@ PUT: /v1/todo/:id
 DELETE: /v1/todo/:id
 ```
 
+<<<<<<< HEAD
 # 4. 프로젝트 구조
+=======
+# 프로젝트 구조
+>>>>>>> d729cf68db8611e44c0f6ff4e682ce9da50ae7f0
 
 ```bash
 .
@@ -76,6 +108,7 @@ DELETE: /v1/todo/:id
 - go.mod, go.sum : 패키지 관리
 - main.go : 메인 파일
 
+<<<<<<< HEAD
 # 5. 패키지 별 기능과 관계
 
 ![Untitled](images/Untitled.png)
@@ -83,6 +116,15 @@ DELETE: /v1/todo/:id
 # 6. 사전 작업
 
 ## 6.1. DB, Table 생성
+=======
+# 패키지 별 기능과 관계
+
+![Untitled](images/Untitled.png)
+
+# 사전 작업
+
+## DB, Table 생성
+>>>>>>> d729cf68db8611e44c0f6ff4e682ce9da50ae7f0
 
 mysql 서버를 도커 컨테이너로 구동
 
@@ -147,7 +189,11 @@ Query OK, 0 rows affected (0.03 sec)
 
 - 칼럼명이 구조체에서 정의한 `json:<칼럼명>` 과 다르면 문제가 발생함.
 
+<<<<<<< HEAD
 ## 6.2. 모듈 생성
+=======
+## 모듈 생성
+>>>>>>> d729cf68db8611e44c0f6ff4e682ce9da50ae7f0
 
 ```bash
 mkdir todo && cd $_
@@ -156,7 +202,11 @@ go mod init github.com/bellship24/easy-todo
 
 - 모듈 이름은 알맞게 수정해서 사용하면 됨.
 
+<<<<<<< HEAD
 ## 6.3. 패키지 다운로드
+=======
+## 패키지 다운로드
+>>>>>>> d729cf68db8611e44c0f6ff4e682ce9da50ae7f0
 
 ```bash
 go get github.com/go-sql-driver/mysql
@@ -164,9 +214,15 @@ go get github.com/gin-gonic/gin
 go get github.com/jinzhu/gorm
 ```
 
+<<<<<<< HEAD
 # 7. Gin 작성
 
 ## 7.1. 데이터베이스 설정
+=======
+# Gin 작성
+
+## 데이터베이스 설정
+>>>>>>> d729cf68db8611e44c0f6ff4e682ce9da50ae7f0
 
 `Config/Database.go`
 
@@ -219,7 +275,11 @@ func DbURL(dbConfig *DBConfig) string {
 - BuildDBConfig() 함수를 정의함. DBConfig 구조체를 활용해 접근할 DB 에 대해 명시하고 리턴함.
 - DbURL() 함수를 정의함. *DBConfig 를 인수로 받아 이 구조체의 정보를 출력하여 접근할 DB 정보를 알 수 있음. 이 정보는 main.go 에서 사용할 gorm.Open() 의 두번째 인수로 활용될 수 있게 포맷팅한 문자열임.
 
+<<<<<<< HEAD
 ## 7.2. 테이블, 스키마 정의
+=======
+## 테이블, 스키마 정의
+>>>>>>> d729cf68db8611e44c0f6ff4e682ce9da50ae7f0
 
 `Models/Model.go`
 
@@ -241,7 +301,11 @@ func (b *Todo) TableName() string {
 - 칼럼명이 구조체에서 정의한 `json:<칼럼명>` 과 다르면 문제가 발생함.
 - TableName() 함수를 정의함. Todo 구조체 객체가 실제 데이터베이스에 접근할 때 사용하는 테이블의 이름을 나타냄.
 
+<<<<<<< HEAD
 ## 7.3. 라우트와 API 목록 설정
+=======
+## 라우트와 API 목록 설정
+>>>>>>> d729cf68db8611e44c0f6ff4e682ce9da50ae7f0
 
 - `gin.Default()` 는 Logger(로그를 gin.DefaultWriter에 기록) 와 Recovery 미들웨어가 이미 연결된 gin.Engine 인스턴스를 반환함.
 - 반면에, 미들웨어가 연결된 빈 gin.Engine 인스턴스를 시작해야 하는 경우 `gin.New()` 를 사용함.
@@ -276,7 +340,11 @@ func SetupRouter() *gin.Engine {
 - v1 인스턴스에 대해 CRUD 메서드를 사용해 첫번째 인자로 URL 경로를 넣고 두번째 인자로 핸들러 함수를 넣음.
 - 핸들러 함수는 `Controllers/Todo.go` 에 정의했음.
 
+<<<<<<< HEAD
 ## 7.4. 데이터베이스 쿼리 작성
+=======
+## 데이터베이스 쿼리 작성
+>>>>>>> d729cf68db8611e44c0f6ff4e682ce9da50ae7f0
 
 `Models/Todos.go`
 
@@ -337,7 +405,11 @@ func DeleteATodo(todo *Todo, id string) (err error) {
 - Save(*구조체) : UPDATE 테이블명 SET 칼럼=값... WHERE id=..;
 - Delete(*구조체) : DELETE FROM 테이블명 WHERE id=<id>;
 
+<<<<<<< HEAD
 ## 7.5. 핸들러 작성
+=======
+## 핸들러 작성
+>>>>>>> d729cf68db8611e44c0f6ff4e682ce9da50ae7f0
 
 - GIN은 request body 를 JSON, XML, YAML 등의 형식으로 바인딩하는 메서드(Must bind, Should bind)를 제공함.
 - 그래서, 여기서는 request body 를 Models.Todo 에 바인딩함.
@@ -460,7 +532,11 @@ func DeleteATodo(c *gin.Context) {
     ```
     
 
+<<<<<<< HEAD
 ## 7.6. 메인함수 작성
+=======
+## 메인함수 작성
+>>>>>>> d729cf68db8611e44c0f6ff4e682ce9da50ae7f0
 
 - 이제, DB config, Models, Routes, APIs 를 main.go 에서 결합하자. gorm.Open() 을 사용해 DB connection 을 초기화하자.
 
@@ -508,9 +584,15 @@ func main() {
 - AutoMigrate() 는 스키마를 자동으로 마이그레이션하여 스키마 업데이트를 최신 상태로 유지함.
 - 앞서 정의한 Routes.SetUpRouter() 를 사용해 리턴값인 gin.Engine 을 r 변수에 할당하고 r.Run() 으로 gin 서버를 구동함.
 
+<<<<<<< HEAD
 # 8. 서버 구동 및 테스트
 
 ## 8.1. 서버 구동
+=======
+# 서버 구동 및 테스트
+
+## 서버 구동
+>>>>>>> d729cf68db8611e44c0f6ff4e682ce9da50ae7f0
 
 ```bash
 $ go run main.go
@@ -532,7 +614,11 @@ Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-
 [GIN-debug] Listening and serving HTTP on :8080
 ```
 
+<<<<<<< HEAD
 ## 8.2. API 호출 테스트
+=======
+## API 호출 테스트
+>>>>>>> d729cf68db8611e44c0f6ff4e682ce9da50ae7f0
 
 GetTodos 호출 시에 정상적으로 200 리턴하지만 아무 데이터가 없어 빈 Response 가 출력됨.
 
@@ -577,6 +663,10 @@ mysql> select * from todos;
 |  3 | my test 3 | test 3.     |
 +----+-----------+-------------+
 2 rows in set (0.00 sec)
+<<<<<<< HEAD
 ```
 
 이렇게 gin 프레임워크를 이용해 간단한 RESTful API 을 만들어 봤다.
+=======
+```
+>>>>>>> d729cf68db8611e44c0f6ff4e682ce9da50ae7f0
